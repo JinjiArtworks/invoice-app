@@ -20,6 +20,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [InvoiceController::class, 'index'])->name('index');
     Route::get('/invoice/new', [InvoiceController::class, 'create'])->name('create');
     Route::get('/invoice/show/{id}', [InvoiceController::class, 'show'])->name('show');
+    Route::get('/invoice/edit/{id}', [InvoiceController::class, 'edit'])->name('edit');
 });
 // Route::get('/{pathMatch}', function () {
 //     return view('error404');
