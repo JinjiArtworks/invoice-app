@@ -15,7 +15,6 @@ const hideModal = ref(true);
 const indexForm = async () => {
     let response = await axios.get("/api/createInvoice");
     form.value = response.data;
-    console.log(response);
 };
 const getAllCustomers = async () => {
     let response = await axios.get("/api/customers");

@@ -1,26 +1,22 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-
 //import router
 import { useRouter, useRoute } from "vue-router"; // wajib gunakan ini jika mau update..
 
 //init router
 const router = useRouter();
-
-//init route
 const route = useRoute();
 let form = ref({ id: '' })
 
 const getInvoice = async () => {
-    let response = await axios.get(`/api/showInvoice/${route.params.id}`)
+    let response = await axios.get(`/api/showInvoice/${route.params.id}`);
     form.value = response.data.invoices
-    console.log(response);
+    // console.log('test', response);
 }
 const print = () => {
     window.print()
     router.push('/').catch(() => { })
 }
-
 const onEdit = (id) => {
     router.push('/invoice/edit/' + id)
 }
@@ -29,6 +25,7 @@ const deleteInvoice = (id) => {
     router.push('/')
 }
 onMounted(async () => {
+    console.log(route.params.id);
     getInvoice();
 })
 </script>
@@ -40,7 +37,6 @@ onMounted(async () => {
                     <h2 class="invoice__title">Invoice</h2>
                 </div>
                 <div>
-
                 </div>
             </div>
             <div>

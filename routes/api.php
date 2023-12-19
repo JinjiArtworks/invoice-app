@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\CustomerApi;
+use App\Http\Controllers\Api\InvoiceApi;
+use App\Http\Controllers\Api\ProductApi;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
@@ -21,15 +24,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 // Route::get('/getInvoices', [InvoiceController::class, 'getInvoices']);
-Route::apiResource('/invoice', InvoiceController::class);
-Route::get('/searchInvoice', [InvoiceController::class, 'searchInvoice']);
-Route::get('/createInvoice', [InvoiceController::class, 'createInvoice']);
-Route::get('/editInvoice/{id}', [InvoiceController::class, 'editInvoice']);
-Route::get('/showInvoice/{id}', [InvoiceController::class, 'showInvoice']);
-Route::post('/updateInvoice/{id}', [InvoiceController::class, 'updateInvoice']);
-Route::get('/deleteInvoiceItem/{id}', [InvoiceController::class, 'deleteInvoiceItem']);
-Route::get('/deleteInvoice/{id}', [InvoiceController::class, 'deleteInvoice']);
+Route::apiResource('/invoice', InvoiceApi::class);
+Route::get('/searchInvoice', [InvoiceApi::class, 'searchInvoice']);
+Route::get('/createInvoice', [InvoiceApi::class, 'createInvoice']);
+Route::get('/editInvoice/{id}', [InvoiceApi::class, 'editInvoice']);
+Route::get('/showInvoice/{id}', [InvoiceApi::class, 'showInvoice']);
+Route::post('/updateInvoice/{id}', [InvoiceApi::class, 'updateInvoice']);
+Route::get('/deleteInvoiceItem/{id}', [InvoiceApi::class, 'deleteInvoiceItem']);
+Route::get('/deleteInvoice/{id}', [InvoiceApi::class, 'deleteInvoice']);
 
-Route::apiResource('/customers', CustomerController::class);
+Route::apiResource('/customers', CustomerApi::class);
 
-Route::apiResource('/products', ProductController::class);
+Route::apiResource('/products', ProductApi::class);

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [InvoiceController::class, 'index'])->name('index');
+    Route::get('/invoice/new', [InvoiceController::class, 'create'])->name('create');
+    Route::get('/invoice/show/{id}', [InvoiceController::class, 'show'])->name('show');
 });
-Route::get('/{pathMatch}', function () {
-    return view('welcome');
-})->where('pathMatch', '.*');
+// Route::get('/{pathMatch}', function () {
+//     return view('error404');
+// })->where('pathMatch', '.*');
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');

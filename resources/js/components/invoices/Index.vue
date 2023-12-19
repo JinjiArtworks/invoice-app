@@ -10,7 +10,6 @@ let searchInvoices = ref([]);
 const getInvoices = async () => {
     let response = await axios.get("/api/invoice");
     invoices.value = response.data.invoices;
-    // console.log("response", response);
 };
 const search = async () => {
     let response = await axios.get(
@@ -38,7 +37,7 @@ onMounted(async () => {
                     <h2 class="invoice__title">Invoices</h2>
                 </div>
                 <div>
-                    <a class="btn btn-secondary" @click="newInvoice">
+                    <a class="btn btn-secondary" @click="newInvoice()">
                         New Invoice
                     </a>
                 </div>
@@ -87,7 +86,7 @@ onMounted(async () => {
 
                 <!-- item 1 -->
                 <div class="table--items" v-for="(item, index) in invoices" :key="index">
-                    <a @click="onShow(item.id)" class="table--items--transactionId">#{{ item.id }}</a>
+                    <a href="" class="table--items--transactionId" @click="onShow(item.id)">#{{ item.id }}</a>
                     <p>{{ item.date }}</p>
                     <p>#{{ item.number }}</p>
                     <!-- how to use ORM model  -->
