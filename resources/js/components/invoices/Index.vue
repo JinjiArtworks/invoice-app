@@ -4,13 +4,15 @@ import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-let invoices = ref([]);
+let invoices = ref([]); // ? woi
 let searchInvoices = ref([]);
 // method
 const getInvoices = async () => {
     let response = await axios.get("/api/invoice");
     invoices.value = response.data.invoices;
 };
+// ctrl+option+L untk auto clg
+// cmd+shift+l untuk auto generate text, sama kyk cmd+d
 const search = async () => {
     let response = await axios.get(
         "/api/searchInvoice?s=" + searchInvoices.value
